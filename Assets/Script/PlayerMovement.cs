@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
         {
             WalkRight?.Invoke();
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Vector3 jump = new Vector3(transform.position.x, transform.position.y, speed);
+            transform.position = Vector3.Slerp(transform.position, jump, speed * Time.deltaTime);
+        }
         
     }
     public void FixedUpdate()
