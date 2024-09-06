@@ -7,16 +7,23 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float speed = 5f;
+    public Rigidbody2D rb;
+    Vector2 movement;
+    [Header("Animation Settings")]
+    public UnityEvent Awakes;
     [Header("Animation Settings")]
     public UnityEvent IdleEvent;
     public UnityEvent WalkRight;
     public UnityEvent WalkLeft;
 
-
-    public float speed = 5f;
-    public Rigidbody2D rb;
-    Vector2 movement;
-
+    private void Awake()
+    {
+        if (PlayerPrefs.GetString("item") == "True")
+        {
+            Awakes?.Invoke();
+        }
+    }
     // Update is called once per frame
     public void Update()
     {
@@ -37,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             Vector3 jump = new Vector3(transform.position.x, transform.position.y, speed);
-            transform.position = Vector3.Slerp(transform.position, jump, speed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, jump, speed * Time.deltaTime);
         }
         
     }

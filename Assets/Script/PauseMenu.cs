@@ -22,7 +22,7 @@ public class PauseMenu : MonoBehaviour
         {
             Toggle();
             paused?.Invoke();
-            Debug.Log("bisa");
+            // Debug.Log("bisa");
         }
 
     }
